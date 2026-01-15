@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Store, BookOpen } from "lucide-react";
+import { Menu, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import pyaterochkaLogo from "@/assets/pyaterochka-logo.png";
 
 const navigation = [
   { name: "Обзор", href: "/" },
@@ -27,20 +28,22 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo & Branding */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
                 <BookOpen className="h-5 w-5 text-primary" />
               </div>
-              <div className="hidden sm:block">
-                <p className="text-sm font-medium text-muted-foreground leading-none">
-                  Летопись ретейла
-                </p>
-                <div className="flex items-center gap-1.5 mt-0.5">
-                  <Store className="h-3.5 w-3.5 text-primary" />
-                  <span className="text-base font-semibold text-foreground">
-                    Пятёрочка
-                  </span>
+              <div className="hidden sm:flex items-center gap-3">
+                <div>
+                  <p className="text-sm font-medium text-muted-foreground leading-none">
+                    Летопись ретейла
+                  </p>
                 </div>
+                <div className="h-6 w-px bg-border" />
+                <img 
+                  src={pyaterochkaLogo} 
+                  alt="Пятёрочка" 
+                  className="h-7 w-auto"
+                />
               </div>
             </div>
           </Link>
@@ -72,20 +75,21 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="right" className="w-72">
               <div className="flex flex-col gap-6 mt-8">
-                <div className="flex items-center gap-2 px-2">
+              <div className="flex flex-col gap-3 px-2">
+                <div className="flex items-center gap-2">
                   <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
                     <BookOpen className="h-5 w-5 text-primary" />
                   </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground">
-                      Летопись ретейла
-                    </p>
-                    <p className="text-sm font-semibold flex items-center gap-1">
-                      <Store className="h-3 w-3 text-primary" />
-                      Пятёрочка
-                    </p>
-                  </div>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Летопись ретейла
+                  </p>
                 </div>
+                <img 
+                  src={pyaterochkaLogo} 
+                  alt="Пятёрочка" 
+                  className="h-8 w-auto"
+                />
+              </div>
                 <nav className="flex flex-col gap-1">
                   {navigation.map((item) => (
                     <Link
