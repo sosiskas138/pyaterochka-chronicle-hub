@@ -13,7 +13,7 @@ import {
   Play,
   BarChart3,
 } from "lucide-react";
-import heroImage from "@/assets/hero-store.jpg";
+import heroImage from "@/assets/hero-store-updated.jpg";
 
 const metrics = [
   { value: "19 000+", label: "Магазинов по всей России", icon: Store, trend: "up" as const, trendValue: "+500 за год" },
