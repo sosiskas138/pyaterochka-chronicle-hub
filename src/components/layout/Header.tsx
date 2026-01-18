@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
 import { Menu, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -15,11 +14,11 @@ const navigation = [
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
-
+  
   const isActive = (href: string) => {
-    if (href === "/") return location.pathname === "/";
-    return location.pathname.startsWith(href);
+    const pathname = window.location.pathname;
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
   };
 
   return (
@@ -27,7 +26,7 @@ export function Header() {
       <div className="hub-container">
         <div className="flex h-16 items-center justify-between">
           {/* Logo & Branding */}
-          <Link to="/" className="flex items-center gap-3 group">
+          <a href="/" className="flex items-center gap-3 group">
             <div className="flex items-center gap-3">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
                 <BookOpen className="h-5 w-5 text-primary" />
@@ -46,14 +45,14 @@ export function Header() {
                 />
               </div>
             </div>
-          </Link>
+          </a>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
             {navigation.map((item) => (
-              <Link
+              <a
                 key={item.href}
-                to={item.href}
+                href={item.href}
                 className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
                   isActive(item.href)
                     ? "bg-primary/10 text-primary"
@@ -61,7 +60,7 @@ export function Header() {
                 }`}
               >
                 {item.name}
-              </Link>
+              </a>
             ))}
           </nav>
 
@@ -92,9 +91,9 @@ export function Header() {
               </div>
                 <nav className="flex flex-col gap-1">
                   {navigation.map((item) => (
-                    <Link
+                    <a
                       key={item.href}
-                      to={item.href}
+                      href={item.href}
                       onClick={() => setIsOpen(false)}
                       className={`px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
                         isActive(item.href)
@@ -103,7 +102,7 @@ export function Header() {
                       }`}
                     >
                       {item.name}
-                    </Link>
+                    </a>
                   ))}
                 </nav>
               </div>
