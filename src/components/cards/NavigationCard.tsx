@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { LucideIcon, ArrowRight } from "lucide-react";
 
 interface NavigationCardProps {
@@ -22,7 +21,7 @@ export function NavigationCard({
   };
 
   return (
-    <Link to={href} className="hub-card-interactive group block">
+    <a href={href} className="hub-card-interactive group block">
       <div className="flex items-start gap-4">
         <div
           className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-colors ${colorClasses[accentColor]}`}
@@ -39,6 +38,6 @@ export function NavigationCard({
         </div>
         <ArrowRight className="h-5 w-5 text-muted-foreground opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
       </div>
-    </Link>
+    </a>
   );
 }

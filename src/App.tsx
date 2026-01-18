@@ -2,7 +2,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import HistoryPage from "./pages/HistoryPage";
 import FactsPage from "./pages/FactsPage";
@@ -12,21 +11,32 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+// Simple path-based routing with full page reloads
+function getPage() {
+  const pathname = window.location.pathname;
+  
+  switch (pathname) {
+    case "/":
+      return <HomePage />;
+    case "/history":
+      return <HistoryPage />;
+    case "/facts":
+      return <FactsPage />;
+    case "/achievements":
+      return <AchievementsPage />;
+    case "/media":
+      return <MediaPage />;
+    default:
+      return <NotFound />;
+  }
+}
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/history" element={<HistoryPage />} />
-          <Route path="/facts" element={<FactsPage />} />
-          <Route path="/achievements" element={<AchievementsPage />} />
-          <Route path="/media" element={<MediaPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      {getPage()}
     </TooltipProvider>
   </QueryClientProvider>
 );
